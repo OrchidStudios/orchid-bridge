@@ -1,4 +1,4 @@
-local Core = exports['qb-core']:GetCoreObject()
+local Core = exports.qbx_core
 
 Events = {
     playerLoaded = "QBCore:Server:OnPlayerLoaded",
@@ -8,22 +8,18 @@ Events = {
 
 Framework = {
     RegisterUsableItem = function (item, data)
-        if Orchid.framework == 'qbox' then
-            return exports.qbx_core:CreateUseableItem(item, data)
-        else
-            return Core.Functions.CreateUseableItem(item, data)
-        end
+        return exports.qbx_core:CreateUseableItem(item, data)
     end,
 
     ---@param job string
     ---@return table, number
     GetActivePlayers = function (job)
-        local players, amount = Core.Functions.GetPlayersOnDuty(job)
+        local amount players = Core:GetDutyCountJob(job)
         return players, amount
     end,
 
     GetPlayerFromId = function (src)
-        local player = Core.Functions.GetPlayer(src)
+        local player = Core:GetPlayer(source)
 
         if not player then return nil end
     
@@ -43,7 +39,7 @@ Framework = {
             return inventory:RemoveItem(self.source, item, cnt)
         end
     
-        self.canCarryItem = function (item, cnt)          
+        self.canCarryItem = function (item, cnt)
             return inventory:CanCarryItem(self.source, item, cnt)
         end
 
@@ -52,7 +48,7 @@ Framework = {
         end
 
         self.isAdmin = function ()
-            return Core.Functions.HasPermission(self.source, 'admin')
+            return IsPlayerAceAllowed(self.source, "admin")
         end
 
         self.source = src
@@ -61,4 +57,3 @@ Framework = {
         return self
     end
 }
-

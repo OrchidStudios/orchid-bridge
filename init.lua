@@ -47,7 +47,7 @@ local loadModule = function (module)
     local dir = ('modules/%s'):format(module)
     local path = ('%s/%s/%s.lua'):format(dir, context, config[module])
     local chunk = LoadResourceFile(bridge, (path))
-    if not chunk and client then
+    if not chunk and context == 'client' then
         path = ('%s/%s.lua'):format(dir, config[module])
         chunk = LoadResourceFile(bridge, path)
     end
@@ -74,20 +74,18 @@ local function detectFramework()
         return 'esx'
     elseif GetResourceState('ox_core') == 'started' then
         return 'ox'
-    elseif GetResourceState('qb-core') == 'started' then
-        return 'qb', 'qb'
     elseif GetResourceState('qbx_core') == 'started' then
-        return 'qb', 'qbox'
+        return 'qb'
+    elseif GetResourceState('qb-core') == 'started' then
+        return 'qbox'
     else
         return 'custom'
     end
 end
 
-local framework, core  = detectFramework()
-
-local Orchid = setmetatable({
+Orchid = setmetatable({
     context = context,
-    framework = not core and framework or core,
+    framework = detectFramework(),
     notify = function(...) end,
     target = {},
     textUI = {},
@@ -124,7 +122,7 @@ local function printStartup()
 end
 
 
-require(("framework.%s.%s"):format(framework, context))
+require(("framework.%s.%s"):format(Orchid.framework, context))
 loadAllModules()
 
 printStartup()

@@ -1,5 +1,5 @@
 local Config = lib.load('data.config')
-local target = require("modules.target." .. Config.Target)
+local target = require("modules.target." .. Config.target)
 
 local points = {}
 local function createInteractivePed(ped, options)
