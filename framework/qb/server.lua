@@ -61,7 +61,7 @@ Framework = {
         end
 
         self.isAdmin = function ()
-            return QBCore.Functions.HasPermission(self.source, 'admin')
+            return Core.Functions.HasPermission(self.source, 'admin')
         end
 
         self.source = src
