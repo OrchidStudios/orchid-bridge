@@ -7,8 +7,6 @@ import 'floating-vue/dist/style.css'
 import Divider from './Divider.vue'
 import type { Category } from '@/typings/Category'
 
-
-
 const showList = ref(false)
 const searchQuery = ref('')
 const currentlyOpened = ref<number | null>(null)
@@ -20,7 +18,7 @@ const listData = ref<{
   categories: Array<Category>
 } | null>(null)
 const categoriesSize = computed(() => {
-  return (listData.value?.categories.length || 1)
+  return listData.value?.categories.length || 1
 })
 
 useNuiEvent<{
@@ -36,7 +34,7 @@ useNuiEvent<{
       return { text: item, index: index }
     }),
     buttons: data.buttons,
-    categories: data.categories
+    categories: data.categories,
   }
 })
 
@@ -54,7 +52,9 @@ const buttonClicked = (itemIndex: number, btnIndex: number) => {
 const filteredItems = computed(() => {
   return (
     listData.value?.items.filter((item) => {
-      return item.text.some((value) => value.toString().toLowerCase().includes(searchQuery.value.toLowerCase()))
+      return item.text.some((value) =>
+        value.toString().toLowerCase().includes(searchQuery.value.toLowerCase()),
+      )
     }) || []
   )
 })
@@ -83,15 +83,21 @@ const escListener = (event: KeyboardEvent) => {
 
 function sizeToFr(size: string | boolean | undefined) {
   switch (size) {
-    case 'small': return '0.4fr';
-    case 'mid': return '0.7fr';
-    case 'big': return '1.2fr';
-    default: return '1fr';
+    case 'small':
+      return '0.4fr'
+    case 'mid':
+      return '0.7fr'
+    case 'big':
+      return '1.2fr'
+    default:
+      return '1fr'
   }
 }
 
 const templateColumns = computed(() => {
-  return (listData.value?.categories.map(category => sizeToFr(category.options?.size)).join(' ') || '')
+  return (
+    listData.value?.categories.map((category) => sizeToFr(category.options?.size)).join(' ') || ''
+  )
 })
 
 onMounted(() => {
@@ -101,7 +107,6 @@ onMounted(() => {
 onUnmounted(() => {
   removeEventListener('keydown', escListener)
 })
-
 </script>
 
 <template>
@@ -109,7 +114,7 @@ onUnmounted(() => {
     <header>
       <h4>{{ listData?.label }}</h4>
       <div>
-        <input type="text" v-model="searchQuery" placeholder="Поиск" />
+        <input type="text" v-model="searchQuery" placeholder="Search" />
         <button @click="close()">ESC</button>
       </div>
     </header>
@@ -117,38 +122,51 @@ onUnmounted(() => {
       <li>
         <div>
           <div class="info" ref="gridRef">
-            <p v-for="(column, colIndex) in listData?.categories" :key="colIndex">{{ column.label }}</p>
+            <p v-for="(column, colIndex) in listData?.categories" :key="colIndex">
+              {{ column.label }}
+            </p>
           </div>
           <div class="buttons">
-            <div v-for="(b, bi) in listData?.buttons" :key="bi" style="width: 16px;">
-            </div>
+            <div v-for="(b, bi) in listData?.buttons" :key="bi" style="width: 16px"></div>
           </div>
         </div>
       </li>
       <Divider />
-      <div class="scroll-container" v-bind="containerProps" style="max-height: 80vh;">
-        <ul v-bind="wrapperProps" style="height: min-content;">
+      <div class="scroll-container" v-bind="containerProps" style="max-height: 80vh">
+        <ul v-bind="wrapperProps" style="height: min-content">
           <template v-for="(item, index) in list" :key="index" v-if="list.length > 0">
             <li>
               <div>
                 <div class="info" ref="gridRef">
-                  <p v-for="(text, i) in item.data.text" :key="i" :style="{
-                    textWrap: listData?.categories[i]?.options?.noWrap ? 'nowrap' : 'wrap',
-                  }">{{ text }}</p>
+                  <p
+                    v-for="(text, i) in item.data.text"
+                    :key="i"
+                    :style="{
+                      textWrap: listData?.categories[i]?.options?.noWrap ? 'nowrap' : 'wrap',
+                    }"
+                  >
+                    {{ text }}
+                  </p>
                 </div>
                 <div class="buttons">
-                  <button v-for="(button, btnIndex) in listData?.buttons" :key="btnIndex"
-                    @click.stop="buttonClicked(item.data.index, btnIndex)" v-tooltip="button.label">
-                    <fas :icon="button.icon" style="width:16px; height:16px" color="var(--vt-c-text-light-1)" />
+                  <button
+                    v-for="(button, btnIndex) in listData?.buttons"
+                    :key="btnIndex"
+                    @click.stop="buttonClicked(item.data.index, btnIndex)"
+                    v-tooltip="button.label"
+                  >
+                    <fas
+                      :icon="button.icon"
+                      style="width: 16px; height: 16px"
+                      color="var(--vt-c-text-light-1)"
+                    />
                   </button>
                 </div>
               </div>
             </li>
             <Divider v-if="index !== list.length - 1" />
           </template>
-          <h4 v-else>
-            No Items Found
-          </h4>
+          <h4 v-else>No Items Found</h4>
         </ul>
       </div>
     </div>
@@ -158,7 +176,6 @@ onUnmounted(() => {
 <style scoped lang="scss">
 @use 'sass:color';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
 
 $gap: 1rem;
 $sidePadding: 1.9rem;
@@ -187,11 +204,11 @@ $sidePadding: 1.9rem;
       font-size: 1.1rem;
     }
 
-    >div {
+    > div {
       display: flex;
       align-items: center;
 
-      >input {
+      > input {
         display: flex;
         padding: 0 0.625rem;
         height: 1.6rem;
@@ -231,9 +248,9 @@ $sidePadding: 1.9rem;
   .list-container {
     margin-top: 1.5vh;
     border-radius: 0.625rem;
-    border: 1px solid #444F65;
+    border: 1px solid #444f65;
 
-    >li {
+    > li {
       padding: $gap 0;
     }
   }
@@ -249,18 +266,16 @@ $sidePadding: 1.9rem;
 
       position: relative;
 
-      >h4 {
+      > h4 {
         padding: 0 $sidePadding;
       }
-
-
     }
   }
 
   li {
     list-style-type: none;
 
-    >div {
+    > div {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -278,7 +293,6 @@ $sidePadding: 1.9rem;
           cursor: pointer;
         }
       }
-
 
       .info {
         flex: 0.98;

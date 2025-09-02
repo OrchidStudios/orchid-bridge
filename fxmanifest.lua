@@ -7,7 +7,8 @@ description 'Orchid Bridge'
 version '0.5.0'
 
 shared_scripts {
-	'@ox_lib/init.lua'
+	'@ox_lib/init.lua',
+	'exports/shared/*.lua',
 }
 
 files {

@@ -7,25 +7,25 @@ vi.mock('@/utils/fetchNui', () => ({
 }))
 
 describe('UltimateList.vue', () => {
-  const mockData =   {
-      label: 'List of placed Pots',
-      items: [
-        ['Item 1', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
-        ['Item 2', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
-        ['Item 3', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
-        ['Item 4', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
-        ['Item 5', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
-      ],
-      columns: ['Net ID', 'Coordinates', 'Plants in pot', 'Owner', 'Placement Time'],
-      buttons: [
-        { icon: 'fas fa-edit', label: 'Edit' },
-        { icon: 'fas fa-trash', label: 'Delete' },
-      ],
-    }
+  const mockData = {
+    label: 'List of placed Pots',
+    items: [
+      ['Item 1', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
+      ['Item 2', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
+      ['Item 3', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
+      ['Item 4', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
+      ['Item 5', 'Description 1', 'Value 1', 'Description 1', 'Value 1'],
+    ],
+    columns: ['Net ID', 'Coordinates', 'Plants in pot', 'Owner', 'Placement Time'],
+    buttons: [
+      { icon: 'fas fa-edit', label: 'Edit' },
+      { icon: 'fas fa-trash', label: 'Delete' },
+    ],
+  }
 
   const mountWithAttach = () =>
     mount(UltimateList, {
-      attachTo: document.body
+      attachTo: document.body,
     })
 
   it('does not render before openUltimateList event', () => {
@@ -39,7 +39,7 @@ describe('UltimateList.vue', () => {
     window.dispatchEvent(
       new MessageEvent('message', {
         data: { action: 'openUltimateList', data: mockData },
-      })
+      }),
     )
 
     await wrapper.vm.$nextTick()
@@ -57,13 +57,11 @@ describe('UltimateList.vue', () => {
     window.dispatchEvent(
       new MessageEvent('message', {
         data: { action: 'openUltimateList', data: mockData },
-      })
+      }),
     )
     await wrapper.vm.$nextTick()
 
-    window.dispatchEvent(
-      new MessageEvent('message', { data: { action: 'closeUltimateList' } })
-    )
+    window.dispatchEvent(new MessageEvent('message', { data: { action: 'closeUltimateList' } }))
     await wrapper.vm.$nextTick()
 
     expect(wrapper.find('.window').exists()).toBe(false)
@@ -75,7 +73,7 @@ describe('UltimateList.vue', () => {
     window.dispatchEvent(
       new MessageEvent('message', {
         data: { action: 'openUltimateList', data: mockData },
-      })
+      }),
     )
     await wrapper.vm.$nextTick()
 
@@ -93,7 +91,7 @@ describe('UltimateList.vue', () => {
     window.dispatchEvent(
       new MessageEvent('message', {
         data: { action: 'openUltimateList', data: mockData },
-      })
+      }),
     )
     await wrapper.vm.$nextTick()
 
@@ -112,7 +110,7 @@ describe('UltimateList.vue', () => {
     window.dispatchEvent(
       new MessageEvent('message', {
         data: { action: 'openUltimateList', data: mockData },
-      })
+      }),
     )
     await wrapper.vm.$nextTick()
 
