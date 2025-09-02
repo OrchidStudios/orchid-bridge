@@ -53,7 +53,3 @@ Modules can be extended per **context** (server/client) or shared.
     ```  
 
 This allows any module type (not just `ox.lua`) and ensures clean scaling without modifying the core bridge.
-
-
-## License
-MIT License. See [LICENSE](LICENSE).
