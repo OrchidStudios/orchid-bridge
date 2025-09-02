@@ -20,7 +20,7 @@ orchid-bridge/
 ## Installation
 Check out our documentation following the hyperlink below
 
-## [Documentation](https://app.gitbook.com/o/H0qFWQ3eB1fE518DyJjk/s/izX3XG5QskrI0birZnL0/getting-started/orchid-bridge)
+## [Documentation](https://orchid-docs.gitbook.io/docs/)
 For detailed setup, guides and examples
 
 ## Scalability
