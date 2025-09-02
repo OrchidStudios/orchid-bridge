@@ -26,8 +26,6 @@ files {
 
 client_scripts {
 	'exports/client/*.lua',
-
-	-- 'tests/*.lua',
 }
 
 server_scripts {
