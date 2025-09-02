@@ -1,5 +1,4 @@
 ---@class Context
----https://overextended.dev/ox_lib/Modules/Interface/Client/context
 
 return {
     ---@param data Context
