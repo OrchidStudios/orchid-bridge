@@ -23,6 +23,7 @@ Frameworks:
 - OX
 - QB
 - QBOX
+
 Inventories
 - ox_inventory
   (it is possible that there will be bridge for qb in the future, but due to the fact it's crap this is very unlikely)
