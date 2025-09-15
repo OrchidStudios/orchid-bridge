@@ -17,6 +17,17 @@ orchid-bridge/
 └── init.lua       # Entry point initializing the bridge for the resources
 ```
 
+## Supported
+Frameworks:
+- ESX
+- OX
+- QB
+- QBOX
+
+Inventories
+- ox_inventory
+  (it is possible that there will be bridge for qb in the future, but due to the fact it's crap this is very unlikely)
+
 ## Installation
 Check out our documentation following the hyperlink below
 
