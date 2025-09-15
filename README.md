@@ -18,13 +18,17 @@ orchid-bridge/
 ```
 
 ## Supported
-Frameworks:
+**Frameworks**
 - ESX
 - OX
 - QB
 - QBOX
 
-Inventories
+**Targets**
+- ox_target
+- qb-target
+
+**Inventories**
 - ox_inventory
   (it is possible that there will be bridge for qb in the future, but due to the fact it's crap this is very unlikely)
 

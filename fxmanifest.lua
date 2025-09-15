@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'Orchid Studios'
 description 'Orchid Bridge'
-version '0.5.1'
+version '0.5.2'
 
 shared_scripts {
 	'@ox_lib/init.lua',
