@@ -1,15 +1,21 @@
+local resource = 'qb-inventory'
+
+if GetResourceState('qs-inventory') == 'started' then
+    resource = 'qs-inventory'
+end
+
 local inv = {}
 
 function inv:AddItem(source, name, amount, metadata, slot)
-    return exports['qb-inventory']:AddItem(source, name, amount or 1, slot, metadata)
+    return exports[resource]:AddItem(source, name, amount or 1, slot, metadata)
 end
 
 function inv:RemoveItem(source, name, amount, slot)
-    return exports['qb-inventory']:RemoveItem(source, name, amount or 1, slot)
+    return exports[resource]:RemoveItem(source, name, amount or 1, slot)
 end
 
 function inv:GetItemCount(source, name)
-    return exports['qb-inventory']:GetItemCount(source, name)
+    return exports[resource]:GetItemCount(source, name)
 end
 
 function inv:HasItem(source, name, amount)
@@ -17,7 +23,7 @@ function inv:HasItem(source, name, amount)
 end
 
 function inv:RegisterStash(name, label, slots, weight, distance, jobs, items, coords)
-    return exports['qb-inventory']:CreateInventory(name, {
+    return exports[resource]:CreateInventory(name, {
         label = label,
         slots = slots or 20,
         weight = weight or 100000,
@@ -29,7 +35,7 @@ function inv:RegisterStash(name, label, slots, weight, distance, jobs, items, co
 end
 
 function inv:CanCarryItem(source, name, amount)
-    return exports['qb-inventory']:CanAddItem(source, name, amount or 1)
+    return exports[resource]:CanAddItem(source, name, amount or 1)
 end
 
 function inv:ClearInventory(source)

@@ -1,1 +1,1 @@
-return
+return exports.ox_target

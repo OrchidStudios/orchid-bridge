@@ -88,6 +88,8 @@ local function detectInventory()
         return 'ox'
     elseif GetResourceState('qb-inventory') == 'started' then
         return 'qb'
+    elseif GetResourceState('qs-inventory') == 'started' then
+        return 'qb'
     else
         return 'custom'
     end
