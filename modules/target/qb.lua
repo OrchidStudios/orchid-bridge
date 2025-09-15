@@ -36,7 +36,7 @@ local function convertOxOptions(options)
             v.action = function(entity)
                 v.entity = entity
                 v.coords = entity and GetEntityCoords(entity) or nil
-                v.distance = entity and #(GetEntityCoords(Cache.Ped) - GetEntityCoords(entity)) or nil
+                v.distance = entity and #(GetEntityCoords(cache.Ped) - GetEntityCoords(entity)) or nil
                 v.onSelect(v)
             end
         elseif v.export then
@@ -44,7 +44,7 @@ local function convertOxOptions(options)
                 local resource, exportName = string.strsplit('.', v.export)
                 v.entity = entity
                 v.coords = entity and GetEntityCoords(entity) or nil
-                v.distance = entity and #(GetEntityCoords(Cache.Ped) - GetEntityCoords(entity)) or nil
+                v.distance = entity and #(GetEntityCoords(cache.Ped) - GetEntityCoords(entity)) or nil
                 exports[resource][exportName](nil, v)
             end
         end
