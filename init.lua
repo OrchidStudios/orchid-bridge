@@ -83,9 +83,20 @@ local function detectFramework()
     end
 end
 
+local function detectInventory()
+    if GetResourceState('ox_inventory') == 'started' then
+        return 'ox'
+    elseif GetResourceState('qb-inventory') == 'started' then
+        return 'qb'
+    else
+        return 'custom'
+    end
+end
+
 Orchid = setmetatable({
     context = context,
     framework = detectFramework(),
+    inventory = detectInventory(),
     notify = function(...) end,
     target = {},
     textUI = {},
@@ -95,12 +106,6 @@ Orchid = setmetatable({
     __index = call,
     __call = call,
 })
-
-if GetResourceState("ox_inventory") ~= "started" then
-    lib.print.error("No inventory resource ox_inventory found")
-else
-    inventory = exports.ox_inventory
-end
 
 local loadAllModules = function ()
     for key, value in pairs(config) do
@@ -123,6 +128,8 @@ end
 
 
 require(("framework.%s.%s"):format(Orchid.framework, context))
+require(("inventory.%s.%s"):format(Orchid.inventory, context))
+
 loadAllModules()
 
 printStartup()
