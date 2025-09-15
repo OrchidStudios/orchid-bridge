@@ -1,3 +1,6 @@
+lib.print.warn('addEntity and removeEntity might not work as expected due to usage of qb-target')
+lib.print.warn('Consider switching to ox_target for full compatibility')
+
 local function convertOxOptions(options)
     local distance = 7
 
@@ -74,6 +77,22 @@ local target = {
     end,
 
     removeLocalEntity = function(self, entities, labels)
+        exports['qb-target']:RemoveTargetEntity(entities, labels)
+    end,
+
+    addEntity = function(self, entities, options)
+        for i = 1, #entities do
+            entities[i] = NetworkGetEntityFromNetworkId(entities[i])
+        end
+        local distance, opts = convertOxOptions(options)
+        exports['qb-target']:AddTargetEntity(entities, { options = opts, distance = distance })
+    end,
+
+    removeEntity = function(self, entities, labels)
+        lib.print.warn('removeEntity might not work as expected due to usage of qb-target')
+        for i = 1, #entities do
+            entities[i] = NetworkGetEntityFromNetworkId(entities[i])
+        end
         exports['qb-target']:RemoveTargetEntity(entities, labels)
     end,
 

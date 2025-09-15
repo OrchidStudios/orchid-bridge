@@ -2,7 +2,7 @@ local buttonToControl = {
     ["F1"] = "~INPUT_REPLAY_START_STOP_RECORDING~",
     ["E"] = "~INPUT_CONTEXT~",
     ["SPACE"] = "~INPUT_JUMP~",
-    ["ENTER"] = "~INPUT_ENTER~",
+    ["ENTER"] = "~INPUT_FRONTEND_RDOWN~",
     ["LMB"] = "~INPUT_ATTACK~",
     ["RMB"] = "~INPUT_ATTACK2~",
     ["ESC"] = "~INPUT_FRONTEND_CANCEL~",
@@ -29,7 +29,7 @@ textUI.show = function (buttons)
     else
         for _, button in ipairs(buttons) do
             local upper = string.upper(button.button)
-            text = text .. ("%s %s~n~"):format(buttonToControl[upper] or "N/A", button.description)
+            text = text .. ("%s %s~n~"):format(buttonToControl[upper] or upper, button.description)
         end
     end
 
