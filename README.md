@@ -30,7 +30,7 @@ orchid-bridge/
 
 **Inventories**
 - ox_inventory
-  (it is possible that there will be bridge for qb in the future, but due to the fact it's crap this is very unlikely)
+- qb-inventory (Basic supports). For advanced features, performance and both better security and quality switch to ox_inventory
 
 ## Installation
 Check out our documentation following the hyperlink below
