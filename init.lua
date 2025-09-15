@@ -75,9 +75,9 @@ local function detectFramework()
     elseif GetResourceState('ox_core') == 'started' then
         return 'ox'
     elseif GetResourceState('qbx_core') == 'started' then
-        return 'qb'
-    elseif GetResourceState('qb-core') == 'started' then
         return 'qbox'
+    elseif GetResourceState('qb-core') == 'started' then
+        return 'qb'
     else
         return 'custom'
     end
