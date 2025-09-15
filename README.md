@@ -25,8 +25,8 @@ orchid-bridge/
 - QBOX
 
 **Targets**
-ox_target
-qb-target
+- ox_target
+- qb-target
 
 **Inventories**
 - ox_inventory
