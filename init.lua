@@ -130,7 +130,7 @@ end
 
 
 require(("framework.%s.%s"):format(Orchid.framework, context))
-require(("inventory.%s.%s"):format(Orchid.inventory, context))
+inventory = require(("inventory.%s.%s"):format(Orchid.inventory, context))
 
 loadAllModules()
 
