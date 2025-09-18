@@ -1,1 +1,1 @@
-return exports.ox_target
+return exports.ox_inventory
