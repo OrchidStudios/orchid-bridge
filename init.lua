@@ -122,7 +122,7 @@ local function printStartup()
     print("^3======= Modules Loaded =============^7")
     for key, value in pairs(Orchid) do
         if key ~= "config" and key ~= "framework" and key ~= "context" then
-            print((" %s: \t ^5%s^7"):format(key, config[key]))
+            print((" %s: \t ^5%s^7"):format(key, config[key] or Orchid[key]))
         end
     end
     print("^3====================================^7")
