@@ -51,7 +51,7 @@ jobs:
         run: |
           mkdir -p ./temp/orchid-bridge/web
           cp ./{README.md,LICENSE,fxmanifest.lua,init.lua} ./temp/orchid-bridge
-          cp -r ./{data,modules,exports,framework, inventory} ./temp/orchid-bridge
+          cp -r ./{data,modules,exports,framework,inventory} ./temp/orchid-bridge
           cp -r ./web/build ./temp/orchid-bridge/web/build
           cp ./web/LICENSE ./temp/orchid-bridge/web/build
           cd ./temp && zip -r ../orchid-bridge.zip ./orchid-bridge
