@@ -1,4 +1,4 @@
-math.randomseed(Orchid.context == "server" and os.time() or GetGameTimer())
+math.randomseed(IsDuplicityVersion() and os.time() or GetGameTimer())
 
 ---@param loot { [1]: string, [2]: { [1]: number, [2]: number }, [3]?: number }[]
 ---@param itemCount number
