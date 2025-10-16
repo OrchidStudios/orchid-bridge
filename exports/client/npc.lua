@@ -16,7 +16,7 @@ local function createInteractivePed(ped, options)
             if self.entity and DoesEntityExist(self.entity) then
                 DeleteEntity(self.entity)
             end
-            ped.hash =  lib.requestModel(ped.hash, 5000)
+            ped.hash =  lib.requestModel(ped.hash or ped.model, 5000)
             self.entity = CreatePed(2, ped.hash, ped.coords.xyz, false, false)
         
             while not DoesEntityExist(self.entity) do

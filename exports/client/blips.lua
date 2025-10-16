@@ -5,6 +5,14 @@ local function createBlip(settings, coords)
         blips[resource] = {}
     end
 
+    if not coords then
+        if settings.coords then
+            coords = settings.coords
+        else
+            error('No coordinates provided for blip')
+        end 
+    end
+
 	local blip
     if settings.sprite then
         blip = AddBlipForCoord(coords.x, coords.y, coords.z)

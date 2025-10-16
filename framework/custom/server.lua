@@ -48,6 +48,9 @@ Framework = {
             return player.hasRole('admin') or player.hasRole('s') or player.hasRole('event')
         end
 
+        self.getAccount = player.getAccount
+        self.removeAccountMoney = player.removeAccountMoney
+
         self.getName = player.getName
         
         self.source = src

@@ -42,7 +42,10 @@ local config = lib.load('data.config')
 -- Module
 -----------------------------------------------------------------------------------------------
 local loadModule = function (module)
-    if not config[module] then return lib.print.error(("[orchid-bridge] No %s module set in config"):format(module)) end
+    if not config[module] then 
+        -- lib.print.error(("[orchid-bridge] No %s module set in config"):format(module))
+        return
+    end
     
     local dir = ('modules/%s'):format(module)
     local path = ('%s/%s/%s.lua'):format(dir, context, config[module])
@@ -65,9 +68,27 @@ local loadModule = function (module)
 end
 
 local function call(self, index, ...)
-    return export[index](nil, ...)
-end
+    local module = rawget(self, index)
 
+    if not module then
+        self[index] = noop
+        module = loadModule(self, index)
+
+        if not module then
+            local function method(...)
+                return export[index](nil, ...)
+            end
+
+            if not ... then
+                self[index] = method
+            end
+
+            return method
+        end
+    end
+
+    return module
+end
 
 local function detectFramework()
     if GetResourceState('es_extended') == 'started' then
