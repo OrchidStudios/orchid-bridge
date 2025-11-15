@@ -29,7 +29,6 @@ client_scripts {
 }
 
 server_scripts {
-	'versionChecker.lua',
 	'exports/server/*.lua',
 }
 
