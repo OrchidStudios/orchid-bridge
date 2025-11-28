@@ -54,7 +54,11 @@ function ListMenu:close()
 end
 
 function ListMenu:onSelect(itemIndex, buttonIndex)
-    self.buttons[buttonIndex].onSelect(itemIndex, self.items[itemIndex], self.items[itemIndex].args)
+    if self.buttons[buttonIndex] then
+        self.buttons[buttonIndex].onSelect(itemIndex, self.items[itemIndex].text, self.items[itemIndex].args)
+    else
+        lib.print.warn('Button index ' .. tostring(buttonIndex) .. ' does not exist.')
+    end
 end
 
 
