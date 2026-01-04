@@ -2,6 +2,7 @@ local Config = lib.load('data.config')
 local target = require("modules.target." .. Config.target)
 
 local points = {}
+
 local function createInteractivePed(ped, options)
     if not ped or not options then return end
     local resource = GetInvokingResource()
@@ -10,14 +11,14 @@ local function createInteractivePed(ped, options)
     end
 
     local point = lib.points.new({
-        coords = ped.coords,
+        coords = vec3(ped.coords.x, ped.coords.y, ped.coords.z),
         distance = 40.0,
         onEnter = function(self)
             if self.entity and DoesEntityExist(self.entity) then
                 DeleteEntity(self.entity)
             end
             ped.hash =  lib.requestModel(ped.hash or ped.model, 5000)
-            self.entity = CreatePed(2, ped.hash, ped.coords.xyz, false, false)
+            self.entity = CreatePed(2, ped.hash, ped.coords.x, ped.coords.y, ped.coords.z, false, false)
         
             while not DoesEntityExist(self.entity) do
                 Wait(50)
