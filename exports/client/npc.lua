@@ -12,7 +12,7 @@ local function createInteractivePed(ped, options)
 
     local point = lib.points.new({
         coords = vec3(ped.coords.x, ped.coords.y, ped.coords.z),
-        distance = 40.0,
+        distance = ped.distance or 40.0,
         onEnter = function(self)
             if self.entity and DoesEntityExist(self.entity) then
                 DeleteEntity(self.entity)
@@ -26,7 +26,7 @@ local function createInteractivePed(ped, options)
     
             SetEntityHeading(self.entity, ped.coords.w)
             if ped.scenario ~= false then
-                TaskStartScenarioInPlace(self.entity, "WORLD_HUMAN_CLIPBOARD", 0, true)
+                TaskStartScenarioInPlace(self.entity, ped.scenario or "WORLD_HUMAN_CLIPBOARD", 0, true)
             end
             FreezeEntityPosition(self.entity, true)
             SetBlockingOfNonTemporaryEvents(self.entity, true)
