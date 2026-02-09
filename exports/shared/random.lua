@@ -14,8 +14,7 @@ local function randomLoot(loot, itemCount)
         -- Filter out already used items
         local available = {}
         for _, item in ipairs(loot) do
-            local name = item[1]
-            if not usedNames[name] then
+            if not usedNames[item[1]] then
                 table.insert(available, item)
             end
         end
@@ -25,19 +24,17 @@ local function randomLoot(loot, itemCount)
         -- Calculate total weight
         local totalWeight = 0
         for _, item in ipairs(available) do
-            local chance = (item[3] or 70)
-            totalWeight = totalWeight + chance
+            totalWeight = totalWeight + (item[3] or 70)
         end
 
-        -- Weighted selection
-        local roll = math.random(1, totalWeight)
-        local acc = 0
+        -- Weighted selection using cumulative distribution
+        local roll = math.random() * totalWeight
+        local cumulative = 0
         local selectedItem = nil
 
         for _, item in ipairs(available) do
-            local weight = item[3] == 100 and 100000 or (item[3] or 70)
-            acc = acc + weight
-            if roll <= acc then
+            cumulative = cumulative + (item[3] or 70)
+            if roll <= cumulative then
                 selectedItem = item
                 break
             end
@@ -54,6 +51,5 @@ local function randomLoot(loot, itemCount)
 
     return items
 end
-
 
 exports('randomLoot', randomLoot)
