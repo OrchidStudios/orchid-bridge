@@ -8,7 +8,7 @@ Events = {
 
 Framework = {
     RegisterUsableItem = function (item, data)
-        return exports.qbx_core:CreateUseableItem(item, data)
+        return Core:CreateUseableItem(item, data)
     end,
 
     ---@param job string
@@ -19,9 +19,9 @@ Framework = {
     end,
 
     GetPlayerFromId = function (src)
-        local player = Core:GetPlayer(source)
+        local player = Core:GetPlayer(src)
 
-        if not player then return nil end
+        if not player then return nil, error(src .. " Player not found") end
     
         local self = {}
 
