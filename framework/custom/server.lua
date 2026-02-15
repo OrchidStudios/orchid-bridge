@@ -32,7 +32,7 @@ Framework = {
     ---@param job string
     ---@return table, number
     GetActivePlayers = function (job)
-        local players = Core.GetExtendedPlayers('job', job)
+        local players = Core.GetExtendedPlayers(job and 'job' or nil, job)
         return players, #players
     end,
 
